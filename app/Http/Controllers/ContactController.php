@@ -10,11 +10,14 @@ use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
 {
-    public function SendMessage(ContactRequest $request)
+    public function SendMessage(Request $request)
     {
         try {
-            $Validation = Validator::make($request->validated(),[
-                
+            $Validation = Validator::make($request->all(),[
+                'name' => 'required',
+                'email'=>'required|email',
+                'subject'=>'required',
+                'message'=>'required'
             ]);
 
             if ($Validation->fails())
@@ -65,9 +68,9 @@ class ContactController extends Controller
         }
     }
 
-    public function test()
+    public function test(Request $request)
     {
-        $str="AApZyGx3ALvIWL29vGKO6sOcQI0n2g7nmeUuGx4yt8bPdbgWH8AeYsHL5gxJCFMw7w==";
+        $str= $request->name;
         return strlen($str);
     }
 

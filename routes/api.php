@@ -22,6 +22,6 @@ Route::post('getIp',[ContactController::class,'getIp']);
 
 Route::post('SendMessage',[ContactController::class,'SendMessage']);
 
-Route::get('test',[ContactController::class,'test']);
+Route::post('test',[ContactController::class,'test']);
 
 
