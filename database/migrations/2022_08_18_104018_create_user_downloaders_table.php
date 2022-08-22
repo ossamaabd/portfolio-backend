@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIpModelsTable extends Migration
+class CreateUserDownloadersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateIpModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ip_models', function (Blueprint $table) {
+        Schema::create('user_downloaders', function (Blueprint $table) {
             $table->id();
             $table->string('ip');
             $table->string('city');
@@ -30,6 +30,6 @@ class CreateIpModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ip_models');
+        Schema::dropIfExists('user_downloaders');
     }
 }

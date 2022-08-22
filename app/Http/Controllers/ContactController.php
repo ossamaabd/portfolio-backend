@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use App\Models\ipModel;
+use App\Models\UserDownloader;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -41,6 +42,7 @@ class ContactController extends Controller
 
             return response()->json([
                 "message" => "something go wrong",
+                "code" => 500,
                 "error" => $e->getMessage()
             ]);
         }
@@ -52,11 +54,14 @@ class ContactController extends Controller
 
             $ip = new ipModel();
             $ip->ip = $request->ip;
+            $ip->city = $request->city;
+            $ip->region = $request->region;
+            $ip->country_name = $request->country_name;
             $ip->save();
 
 
             return response()->json([
-                "message" => "Your ip was sent successfully",
+                "message" => "Your data was sent successfully",
                 "code" => 200
             ]);
         } catch (\Exception $e) {
@@ -68,10 +73,29 @@ class ContactController extends Controller
         }
     }
 
-    public function test(Request $request)
+    public function UserDownloader(Request $request)
     {
-        $str= $request->name;
-        return strlen($str);
+        try {
+
+            $ip = new UserDownloader();
+            $ip->ip = $request->ip;
+            $ip->city = $request->city;
+            $ip->region = $request->region;
+            $ip->country_name = $request->country_name;
+            $ip->save();
+
+
+            return response()->json([
+                "message" => "Your data was sent successfully",
+                "code" => 200
+            ]);
+        } catch (\Exception $e) {
+
+            return response()->json([
+                "message" => "something go wrong",
+                "error" => $e->getMessage()
+            ]);
+        }
     }
 
 

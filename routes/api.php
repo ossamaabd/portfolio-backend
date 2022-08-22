@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('getIp',[ContactController::class,'getIp']);
 
 Route::post('SendMessage',[ContactController::class,'SendMessage']);
+Route::post('UserDownloader',[ContactController::class,'UserDownloader']);
 
 Route::post('test',[ContactController::class,'test']);
 
